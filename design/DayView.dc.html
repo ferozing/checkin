@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Day view</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBF6EC}
+a{color:#1F4D3A}a:hover{color:#173B2C}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 2120px; box-sizing: border-box; background: #FBF6EC; font-family: 'Figtree', system-ui, sans-serif; color: #2A2420; font-size: 17px; line-height: 1.5; padding: 16px 20px 40px; display: flex; flex-direction: column">
+  <div style="display: flex; align-items: center; gap: 4px">
+    <a href="Dashboard.dc.html" style="min-height: 44px; margin-left: -8px; padding-right: 8px; display: flex; align-items: center; gap: 2px; text-decoration: none; color: #1F4D3A; font-weight: 600">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>Home</a>
+  </div>
+
+  <div style="margin-top: 12px; padding: 0 4px">
+    <p style="margin: 0; font-size: 15px; color: #6B6058">Friday, 2 October</p>
+    <h1 style="margin: 2px 0 0; font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 32px; line-height: 1.15">Ammi's call</h1>
+    <div style="margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center">
+      <span style="display: inline-flex; align-items: center; gap: 8px; background: #E6F1E8; color: #2D6A45; font-weight: 700; font-size: 16px; padding: 8px 14px; border-radius: 999px">
+        <span style="width: 11px; height: 11px; border-radius: 999px; background: #3E8E5C"></span>All good</span>
+      <span style="display: inline-flex; align-items: center; gap: 6px; background: #F3ECDF; color: #4A403A; font-weight: 600; font-size: 15px; padding: 8px 14px; border-radius: 999px">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>8:02 PM · 6 min 40 sec</span>
+      <span style="display: inline-flex; align-items: center; background: #F3ECDF; color: #4A403A; font-weight: 600; font-size: 15px; padding: 8px 14px; border-radius: 999px">Hindi</span>
+    </div>
+  </div>
+
+  <section aria-label="Summary" style="margin-top: 24px; background: #FFFDF8; border-radius: 26px; padding: 8px 20px; box-shadow: 0 1px 2px rgba(60, 40, 20, 0.05), 0 12px 32px rgba(60, 40, 20, 0.07)">
+    <div style="display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid #F0E8DA">
+      <span style="width: 40px; height: 40px; border-radius: 12px; background: #E6EFE7; color: #1F4D3A; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7z"/><path d="m8.5 8.5 7 7"/></svg></span>
+      <div><p style="margin: 0; font-size: 14px; font-weight: 700; color: #6B6058">Medicines</p><p style="margin: 2px 0 0">BP tablet taken in the morning with tea. Evening tablet due after dinner, she said she will take it.</p></div>
+    </div>
+    <div style="display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid #F0E8DA">
+      <span style="width: 40px; height: 40px; border-radius: 12px; background: #E6EFE7; color: #1F4D3A; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01M15 9h.01"/></svg></span>
+      <div><p style="margin: 0; font-size: 14px; font-weight: 700; color: #6B6058">Mood</p><p style="margin: 2px 0 0">Cheerful and chatty. Laughed a few times.</p></div>
+    </div>
+    <div style="display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid #F0E8DA">
+      <span style="width: 40px; height: 40px; border-radius: 12px; background: #E6EFE7; color: #1F4D3A; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 7c0-1.2 1-1.6 1-2.8M12 7c0-1.2 1-1.6 1-2.8M16 7c0-1.2 1-1.6 1-2.8"/></svg></span>
+      <div><p style="margin: 0; font-size: 14px; font-weight: 700; color: #6B6058">Food and sleep</p><p style="margin: 2px 0 0">Had dal chawal for dinner. Slept well, woke up only once.</p></div>
+    </div>
+    <div style="display: flex; gap: 14px; padding: 16px 0">
+      <span style="width: 40px; height: 40px; border-radius: 12px; background: #E6EFE7; color: #1F4D3A; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+      <div><p style="margin: 0; font-size: 14px; font-weight: 700; color: #6B6058">You asked Sona to check on</p><p style="margin: 2px 0 0">Knee pain: better. The warm compress is helping.</p></div>
+    </div>
+  </section>
+
+  <div style="margin-top: 14px; background: #F6E6DC; border-radius: 20px; padding: 18px 20px">
+    <p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8E4220">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Ask her today</p>
+    <p style="margin: 6px 0 0; font-family: 'Fraunces', Georgia, serif; font-size: 21px; line-height: 1.3">How was the wedding prep?</p>
+    <p style="margin: 8px 0 0; font-size: 16px; color: #4A2A1A">She also said: "Tell him to eat properly and call me on Sunday."</p>
+  </div>
+
+  <section aria-labelledby="tr" style="margin-top: 32px">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; padding: 0 4px">
+      <h2 id="tr" style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 23px">The conversation</h2>
+      <span style="font-size: 14px; color: #6B6058">Translated from Hindi</span>
+    </div>
+    <div style="margin-top: 18px; display: flex; flex-direction: column; gap: 12px">
+      <sc-for list="{{lines}}" as="m" hint-placeholder-count="8">
+        <sc-if value="{{m.sona}}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; align-items: flex-start; max-width: 84%">
+            <span style="font-size: 13px; font-weight: 700; color: #1F4D3A; margin: 0 0 4px 6px">Sona</span>
+            <p style="margin: 0; background: #FFFDF8; border: 1px solid #ECE3D3; border-radius: 20px 20px 20px 6px; padding: 12px 16px; font-size: 17px; line-height: 1.45">{{m.text}}</p>
+          </div>
+        </sc-if>
+        <sc-if value="{{m.parent}}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; align-items: flex-end; max-width: 84%; align-self: flex-end">
+            <span style="font-size: 13px; font-weight: 700; color: #8E4220; margin: 0 6px 4px 0">Ammi</span>
+            <p style="margin: 0; background: #E6EFE7; border-radius: 20px 20px 6px 20px; padding: 12px 16px; font-size: 17px; line-height: 1.45">{{m.text}}</p>
+          </div>
+        </sc-if>
+      </sc-for>
+    </div>
+    <p style="margin: 20px 0 0; text-align: center; font-size: 14px; color: #8A7F76">Call ended at 8:08 PM</p>
+  </section>
+
+  <a href="#call" style="margin-top: 28px; text-decoration: none; background: #1F4D3A; color: #FFFDF8; font-weight: 600; font-size: 18px; min-height: 58px; border-radius: 999px; display: flex; align-items: center; justify-content: center; gap: 10px">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call Ammi</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":2120}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const S = (t) => ({ text: t, sona: true, parent: false });
+    const A = (t) => ({ text: t, sona: false, parent: true });
+    return {
+      lines: [
+        S("Hello Ammi, Sona here. Have you had dinner?"),
+        A("Hello beta. Yes, dal chawal. The whole lane is busy, Rehana's daughter is getting married next week."),
+        S("Oh, how lovely! Are you helping with the preparations?"),
+        A("Haan, I made the list of sweets. They asked me because I know the best halwai."),
+        S("That sounds like fun. How is your knee today?"),
+        A("Better. The warm compress Feroz told me about is helping."),
+        S("I'm glad. Did you take your BP tablet today?"),
+        A("Yes, in the morning with tea. The other one I take after dinner."),
+        S("Good. And how did you sleep last night?"),
+        A("Slept well. Woke up once only."),
+        S("Wonderful. I'll tell Feroz you're doing well. Any message for him?"),
+        A("Tell him to eat properly and call me on Sunday."),
+        S("I will. Take care Ammi, I'll call you tomorrow at 8.")
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Onboarding · About you</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBF6EC}
+a{color:#1F4D3A}a:hover{color:#173B2C}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FBF6EC; font-family: 'Figtree', system-ui, sans-serif; color: #2A2420; font-size: 17px; line-height: 1.5; padding: 16px 24px 32px; display: flex; flex-direction: column">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="SignUp.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center; color: #2A2420">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </a>
+    <span style="font-size: 15px; font-weight: 600; color: #6B6058">Step 1 of 4</span>
+    <span style="width: 44px"></span>
+  </div>
+  <div role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1" aria-label="Onboarding progress" style="margin-top: 8px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+    <span style="height: 6px; border-radius: 999px; background: #1F4D3A"></span>
+    <span style="height: 6px; border-radius: 999px; background: #E6DCCB"></span>
+    <span style="height: 6px; border-radius: 999px; background: #E6DCCB"></span>
+    <span style="height: 6px; border-radius: 999px; background: #E6DCCB"></span>
+  </div>
+
+  <h1 style="margin: 36px 0 0; font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 34px; line-height: 1.15">About you</h1>
+  <p style="margin: 10px 0 0; color: #5E544D">So Sona knows who to send the updates to.</p>
+
+  <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="name" style="font-weight: 600; font-size: 16px">Your name</label>
+      <input id="name" type="text" value="Feroz" style="height: 58px; box-sizing: border-box; border: 1.5px solid #DCD0BC; border-radius: 16px; background: #FFFDF8; padding: 0 18px; font: inherit; font-size: 18px; color: #2A2420">
+      <span style="font-size: 14px; color: #6B6058">Sona will mention you by this name, so your parent knows who sent her.</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="wa" style="font-weight: 600; font-size: 16px">Your WhatsApp number</label>
+      <div style="display: flex; gap: 10px">
+        <span style="height: 58px; box-sizing: border-box; border: 1.5px solid #DCD0BC; border-radius: 16px; background: #F3ECDF; padding: 0 16px; display: flex; align-items: center; font-size: 18px; font-weight: 600">+91</span>
+        <input id="wa" type="tel" inputmode="numeric" value="98450 12345" style="flex: 1; min-width: 0; height: 58px; box-sizing: border-box; border: 1.5px solid #DCD0BC; border-radius: 16px; background: #FFFDF8; padding: 0 18px; font: inherit; font-size: 18px; color: #2A2420; letter-spacing: 0.02em">
+      </div>
+      <span style="font-size: 14px; color: #6B6058">Only used for updates and alerts. Never shared.</span>
+    </div>
+  </div>
+
+  <a href="Onboard2.dc.html" style="margin-top: auto; text-decoration: none; background: #1F4D3A; color: #FFFDF8; font-weight: 600; font-size: 18px; min-height: 58px; border-radius: 999px; display: flex; align-items: center; justify-content: center; gap: 10px">Continue
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

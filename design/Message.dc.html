@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Daily summary message</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#E9E3D6}
+a{color:#1F4D3A}a:hover{color:#173B2C}
+</style>
+</helmet>
+<div style="width: 390px; height: 960px; box-sizing: border-box; background: #E9E3D6; font-family: 'Figtree', system-ui, sans-serif; color: #1E1E1E; font-size: 16px; line-height: 1.45; display: flex; flex-direction: column">
+  <header style="background: #FFFFFF; padding: 14px 16px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid #DDD6C8">
+    <span style="color: #4A5560; display: flex"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></span>
+    <span style="width: 42px; height: 42px; border-radius: 999px; background: #1F4D3A; color: #FBF6EC; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/></svg></span>
+    <div>
+      <p style="margin: 0; font-weight: 700; font-size: 17px">Sona · Parent Check In</p>
+      <p style="margin: 0; font-size: 14px; color: #5D6670">bot</p>
+    </div>
+  </header>
+
+  <div style="flex: 1; padding: 16px 12px; display: flex; flex-direction: column; gap: 10px; justify-content: flex-end">
+    <p style="margin: 0 auto 4px; background: rgba(255, 255, 255, 0.7); color: #4A5560; font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 999px">Yesterday</p>
+    <div style="align-self: flex-start; max-width: 82%; background: #FFFFFF; border-radius: 18px 18px 18px 6px; padding: 10px 14px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06)">
+      <p style="margin: 0"><strong>Ammi</strong> · Worth a call</p>
+      <p style="margin: 4px 0 0">Forgot her evening tablet, took it after the call. Otherwise in good spirits.</p>
+      <p style="margin: 4px 0 0; text-align: right; font-size: 12px; color: #7A848D">8:09 PM</p>
+    </div>
+
+    <p style="margin: 8px auto 4px; background: rgba(255, 255, 255, 0.7); color: #4A5560; font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 999px">Today</p>
+    <div style="align-self: flex-start; max-width: 88%; background: #FFFFFF; border-radius: 18px 18px 18px 6px; padding: 14px 16px; box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06)">
+      <p style="margin: 0; font-size: 15px; color: #5D6670">Ammi · 8:02 PM call · 6 min</p>
+      <p style="margin: 8px 0 0; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 18px; color: #2D6A45">
+        <span style="width: 12px; height: 12px; border-radius: 999px; background: #3E8E5C"></span>All good</p>
+      <ul style="margin: 10px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px">
+        <li>Slept well</li>
+        <li>Had dal chawal</li>
+        <li>BP tablet taken</li>
+        <li>Happy about the neighbour's wedding</li>
+      </ul>
+      <div style="margin-top: 12px; background: #F6E6DC; border-radius: 12px; padding: 10px 12px">
+        <p style="margin: 0; font-size: 13px; font-weight: 700; color: #8E4220">ASK HER TODAY</p>
+        <p style="margin: 2px 0 0; font-weight: 600">How was the wedding prep?</p>
+      </div>
+      <p style="margin: 10px 0 0; font-size: 15px; color: #4A5560">She says: eat properly and call her on Sunday.</p>
+      <p style="margin: 6px 0 0; text-align: right; font-size: 12px; color: #7A848D">8:09 PM</p>
+    </div>
+    <div style="align-self: flex-start; width: 88%; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+      <a href="#full" style="text-decoration: none; background: rgba(255, 255, 255, 0.85); color: #1F4D3A; font-weight: 600; font-size: 15px; min-height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center">Full summary</a>
+      <a href="#call" style="text-decoration: none; background: rgba(255, 255, 255, 0.85); color: #1F4D3A; font-weight: 600; font-size: 15px; min-height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center">Call Ammi</a>
+    </div>
+  </div>
+
+  <div style="background: #FFFFFF; padding: 10px 12px 14px; display: flex; align-items: center; gap: 10px; border-top: 1px solid #DDD6C8">
+    <span style="flex: 1; height: 44px; border-radius: 999px; background: #F2EFE9; color: #7A848D; display: flex; align-items: center; padding: 0 16px; font-size: 15px">Message</span>
+    <span style="width: 44px; height: 44px; border-radius: 999px; background: #1F4D3A; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg></span>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":960}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

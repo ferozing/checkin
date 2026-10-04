@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dashboard</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBF6EC}
+a{color:#1F4D3A}a:hover{color:#173B2C}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1860px; box-sizing: border-box; background: #FBF6EC; font-family: 'Figtree', system-ui, sans-serif; color: #2A2420; font-size: 17px; line-height: 1.5; padding: 20px 20px 40px; display: flex; flex-direction: column; gap: 20px">
+
+  <header style="display: flex; align-items: center; justify-content: space-between; padding: 4px 4px 0">
+    <div>
+      <p style="margin: 0; font-size: 15px; color: #6B6058">Friday, 2 October</p>
+      <h1 style="margin: 2px 0 0; font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 30px; line-height: 1.15">Good evening, Feroz</h1>
+    </div>
+    <button type="button" aria-label="Your account" style="width: 48px; height: 48px; border-radius: 999px; border: 0; background: #E6EFE7; color: #1F4D3A; font: inherit; font-family: 'Fraunces', Georgia, serif; font-size: 20px; font-weight: 600; cursor: pointer">F</button>
+  </header>
+
+  <a href="Plan.dc.html" style="text-decoration: none; background: #F6E6DC; color: #4A2A1A; border-radius: 18px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; min-height: 56px; box-sizing: border-box">
+    <span style="color: #8E4220; display: flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+    <span style="flex: 1; font-weight: 600; font-size: 16px">2 days left in your free trial</span>
+    <span style="font-weight: 600; font-size: 15px; color: #8E4220; display: flex; align-items: center; gap: 2px">See plan<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
+  </a>
+
+  <article aria-label="Today's update for Ammi" style="background: #FFFDF8; border-radius: 28px; overflow: hidden; box-shadow: 0 1px 2px rgba(60, 40, 20, 0.05), 0 14px 36px rgba(60, 40, 20, 0.08)">
+    <div style="background: {{st.bg}}; padding: 18px 22px; display: flex; align-items: center; gap: 12px">
+      <span style="width: 16px; height: 16px; border-radius: 999px; background: {{st.dot}}; box-shadow: 0 0 0 5px rgba(255, 253, 248, 0.6); flex-shrink: 0"></span>
+      <span style="font-family: 'Fraunces', Georgia, serif; font-size: 25px; font-weight: 600; color: {{st.fg}}">{{st.label}}</span>
+    </div>
+    <div style="padding: 22px">
+      <div style="display: flex; align-items: center; gap: 14px">
+        <span style="width: 50px; height: 50px; border-radius: 999px; background: #F6E6DC; color: #8E4220; font-family: 'Fraunces', Georgia, serif; font-size: 21px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0">A</span>
+        <div style="min-width: 0">
+          <h2 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 24px; line-height: 1.1">Ammi</h2>
+          <p style="margin: 3px 0 0; font-size: 15px; color: #6B6058">{{st.meta}}</p>
+        </div>
+      </div>
+
+      <sc-if value="{{st.hasSummary}}" hint-placeholder-val="{{ true }}">
+        <ul style="list-style: none; margin: 20px 0 0; padding: 0; display: flex; flex-direction: column; gap: 12px">
+          <sc-for list="{{st.bullets}}" as="b" hint-placeholder-count="4">
+            <li style="display: flex; align-items: flex-start; gap: 12px; font-size: 17px">
+              <sc-if value="{{b.warn}}" hint-placeholder-val="{{ false }}">
+                <span style="color: {{st.fg}}; display: flex; margin-top: 2px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg></span>
+              </sc-if>
+              <sc-if value="{{b.ok}}" hint-placeholder-val="{{ true }}">
+                <span style="color: #2D6A45; display: flex; margin-top: 2px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+              </sc-if>
+              <span>{{b.text}}</span>
+            </li>
+          </sc-for>
+        </ul>
+        <div style="margin-top: 20px; background: #F6E6DC; border-radius: 18px; padding: 16px 18px">
+          <p style="margin: 0; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8E4220">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Ask her today</p>
+          <p style="margin: 6px 0 0; font-family: 'Fraunces', Georgia, serif; font-size: 21px; line-height: 1.3">{{st.ask}}</p>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{st.hasNote}}" hint-placeholder-val="{{ false }}">
+        <p style="margin: 20px 0 0; font-size: 17px; color: #4A403A">{{st.note}}</p>
+        <p style="margin: 8px 0 0; font-size: 15px; color: #6B6058">{{st.subnote}}</p>
+      </sc-if>
+
+      <a href="#call" style="margin-top: 20px; text-decoration: none; background: {{st.callBg}}; color: #FFFDF8; font-weight: 600; font-size: 18px; min-height: 58px; border-radius: 999px; display: flex; align-items: center; justify-content: center; gap: 10px">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>{{st.callLabel}}</a>
+      <sc-if value="{{st.hasSummary}}" hint-placeholder-val="{{ true }}">
+        <a href="DayView.dc.html" style="margin-top: 6px; min-height: 48px; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; color: #1F4D3A">Read the full call</a>
+      </sc-if>
+    </div>
+  </article>
+
+  <section aria-labelledby="past" style="padding: 8px 4px 0">
+    <h2 id="past" style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 22px">Earlier</h2>
+    <ol style="list-style: none; margin: 16px 0 0; padding: 0; position: relative">
+      <span aria-hidden="true" style="position: absolute; left: 7px; top: 14px; bottom: 30px; width: 2px; background: #E6DCCB"></span>
+      <li style="position: relative; padding-left: 32px; padding-bottom: 14px">
+        <span aria-hidden="true" style="position: absolute; left: 1px; top: 22px; width: 14px; height: 14px; border-radius: 999px; background: #D69A2D; box-shadow: 0 0 0 4px #FBF6EC"></span>
+        <a href="DayView.dc.html" style="text-decoration: none; color: #2A2420; background: #FFFDF8; border-radius: 18px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; box-shadow: 0 1px 2px rgba(60, 40, 20, 0.05), 0 6px 18px rgba(60, 40, 20, 0.05)">
+          <span style="flex: 1; min-width: 0">
+            <span style="display: block; font-size: 14px; color: #6B6058">Yesterday · Thu 1 Oct · First call</span>
+            <span style="display: block; margin-top: 2px; font-weight: 600; color: #85560A">Worth a call</span>
+            <span style="display: block; margin-top: 2px; font-size: 16px; color: #4A403A">Shy at first, then chatted about her garden. Forgot her evening tablet, took it after the call.</span>
+          </span>
+          <span style="color: #8A7F76; display: flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></span>
+        </a>
+      </li>
+      <li style="position: relative; padding-left: 32px">
+        <span aria-hidden="true" style="position: absolute; left: 3px; top: 6px; width: 10px; height: 10px; border-radius: 999px; border: 2px solid #D5C9B6; background: #FBF6EC"></span>
+        <span style="font-size: 14px; color: #8A7F76">You started your trial on Thu 1 Oct</span>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="qa" style="padding: 8px 4px 0">
+    <h2 id="qa" style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 22px">Quick actions</h2>
+    <div style="margin-top: 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+      <a href="Onboard2.dc.html" style="text-decoration: none; color: #2A2420; background: #FFFDF8; border: 1px solid #ECE3D3; border-radius: 18px; padding: 16px 8px; min-height: 96px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 600; text-align: center">
+        <span style="color: #1F4D3A; display: flex"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>Edit details</a>
+      <button type="button" style="font: inherit; color: #2A2420; background: #FFFDF8; border: 1px solid #ECE3D3; border-radius: 18px; padding: 16px 8px; min-height: 96px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 600; cursor: pointer">
+        <span style="color: #1F4D3A; display: flex"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></span>Pause calls</button>
+      <button type="button" style="font: inherit; color: #2A2420; background: #FFFDF8; border: 1px solid #ECE3D3; border-radius: 18px; padding: 16px 8px; min-height: 96px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 600; cursor: pointer">
+        <span style="color: #1F4D3A; display: flex"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 3 14 9-14 9z"/></svg></span>Call now (test)</button>
+    </div>
+  </section>
+
+  <p style="margin: 8px 4px 0; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: #6B6058">
+    <span style="color: #1F4D3A; display: flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+    Sona never asks Ammi for money, bank details or OTPs.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"status":{"editor":"enum","options":["good","amber","red","waiting","missed"],"default":"good"},"$preview":{"width":390,"height":1860}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const key = this.props.status ?? "good";
+    const ok = (t) => ({ text: t, ok: true, warn: false });
+    const warn = (t) => ({ text: t, ok: false, warn: true });
+    const all = {
+      good: {
+        label: "All good", fg: "#2D6A45", bg: "#E6F1E8", dot: "#3E8E5C",
+        meta: "Today · 8:02 PM · 6 min call",
+        bullets: [ok("Slept well"), ok("Had dal chawal"), ok("BP tablet taken"), ok("Happy about the neighbour's wedding")],
+        ask: "How was the wedding prep?",
+        callLabel: "Call Ammi", callBg: "#1F4D3A"
+      },
+      amber: {
+        label: "Worth a call today", fg: "#85560A", bg: "#FBF0D9", dot: "#D69A2D",
+        meta: "Today · 8:01 PM · 4 min call",
+        bullets: [warn("Missed her evening tablet"), warn("Sounded a bit tired"), ok("Had khichdi for dinner"), ok("Knee pain about the same")],
+        ask: "Did you take your evening tablet? Did you get some rest today?",
+        callLabel: "Call Ammi", callBg: "#1F4D3A"
+      },
+      red: {
+        label: "Please call now", fg: "#9A3A24", bg: "#F9E6DF", dot: "#C4553A",
+        meta: "Today · 8:03 PM · 5 min call",
+        bullets: [warn("Mentioned chest discomfort since the afternoon"), ok("Took her BP tablet this morning"), ok("Neighbour Rehana is next door")],
+        ask: "How is the discomfort now? Is someone with you?",
+        callLabel: "Call Ammi now", callBg: "#9A3A24"
+      },
+      waiting: {
+        label: "Call at 8:00 PM", fg: "#3F4B55", bg: "#ECEEEC", dot: "#7D8A94",
+        meta: "Today · in Hindi",
+        note: "Sona will call Ammi at 8:00 PM. Your summary arrives a few minutes after.",
+        subnote: "You can still call her yourself anytime.",
+        callLabel: "Call Ammi", callBg: "#1F4D3A"
+      },
+      missed: {
+        label: "Didn't pick up", fg: "#6B5440", bg: "#F2ECE4", dot: "#A0866B",
+        meta: "Today · tried at 8:00 and 8:15 PM",
+        note: "Ammi didn't answer either call. Sona will try once more at 8:45 PM.",
+        subnote: "This happens now and then. She may be out or resting.",
+        callLabel: "Call Ammi", callBg: "#1F4D3A"
+      }
+    };
+    const st = all[key] || all.good;
+    st.hasSummary = !!st.bullets;
+    st.hasNote = !st.bullets;
+    if (!st.bullets) { st.bullets = []; st.ask = ""; st.note = st.note; }
+    return { st: st };
+  }
+}
+</script>
+</body>
+</html>

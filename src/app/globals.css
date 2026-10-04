@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* Design tokens from CLAUDE.md */
+@theme {
+  --color-cream: #FBF6EC;
+  --color-card: #FFFDF8;
+  --color-sand: #F3ECDF;
+  --color-line: #ECE3D3;
+  --color-line-strong: #DCD0BC;
+
+  --color-ink: #2A2420;
+  --color-ink-2: #5E544D;
+  --color-muted: #6B6058;
+  --color-nav: #4A403A;
+
+  --color-green: #1F4D3A;
+  --color-green-hover: #173B2C;
+  --color-green-soft: #E6EFE7;
+
+  --color-terracotta: #B4532A;
+  --color-terracotta-text: #8E4220;
+  --color-terracotta-soft: #F6E6DC;
+
+  --color-good: #2D6A45;
+  --color-good-bg: #E6F1E8;
+  --color-good-dot: #3E8E5C;
+  --color-amber: #85560A;
+  --color-amber-bg: #FBF0D9;
+  --color-amber-dot: #D69A2D;
+  --color-red: #9A3A24;
+  --color-red-bg: #F9E6DF;
+  --color-red-dot: #C4553A;
+  --color-waiting: #3F4B55;
+  --color-waiting-bg: #ECEEEC;
+  --color-missed: #6B5440;
+  --color-missed-bg: #F2ECE4;
+
+  --font-serif: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-figtree), system-ui, sans-serif;
+  --font-hand: var(--font-caveat), cursive;
+
+  --shadow-soft: 0 1px 2px rgba(42, 36, 32, 0.04), 0 16px 40px rgba(42, 36, 32, 0.06);
+}
+
+html {
+  background: var(--color-cream);
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--color-terracotta);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Onboarding · About your parent</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#FBF6EC}
+a{color:#1F4D3A}a:hover{color:#173B2C}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1380px; box-sizing: border-box; background: #FBF6EC; font-family: 'Figtree', system-ui, sans-serif; color: #2A2420; font-size: 17px; line-height: 1.5; padding: 16px 24px 32px; display: flex; flex-direction: column">
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="Onboard1.dc.html" aria-label="Back" style="width: 44px; height: 44px; margin-left: -10px; display: flex; align-items: center; justify-content: center; color: #2A2420">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </a>
+    <span style="font-size: 15px; font-weight: 600; color: #6B6058">Step 2 of 4</span>
+    <span style="width: 44px"></span>
+  </div>
+  <div role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="2" aria-label="Onboarding progress" style="margin-top: 8px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px">
+    <span style="height: 6px; border-radius: 999px; background: #1F4D3A"></span>
+    <span style="height: 6px; border-radius: 999px; background: #1F4D3A"></span>
+    <span style="height: 6px; border-radius: 999px; background: #E6DCCB"></span>
+    <span style="height: 6px; border-radius: 999px; background: #E6DCCB"></span>
+  </div>
+
+  <h1 style="margin: 36px 0 0; font-family: 'Fraunces', Georgia, serif; font-weight: 500; font-size: 34px; line-height: 1.15">About your parent</h1>
+  <p style="margin: 10px 0 0; color: #5E544D">This helps Sona talk to them the way family does.</p>
+
+  <div style="margin-top: 32px; display: flex; flex-direction: column; gap: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="pname" style="font-weight: 600; font-size: 16px">Their name</label>
+      <input id="pname" type="text" value="Shahnaz Begum" style="height: 58px; box-sizing: border-box; border: 1.5px solid #DCD0BC; border-radius: 16px; background: #FFFDF8; padding: 0 18px; font: inherit; font-size: 18px; color: #2A2420">
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="callname" style="font-weight: 600; font-size: 16px">What do you call them?</label>
+      <input id="callname" type="text" value="{{relation}}" onChange="{{onRelation}}" placeholder="Ammi, Papa, Amma, Nanaji, Mummy..." style="height: 58px; box-sizing: border-box; border: 1.5px solid #DCD0BC; border-radius: 16px; background: #FFFDF8; padding: 0 18px; font: inherit; font-size: 18px; color: #2A2420">
+      <span style="font-size: 14px; color: #6B6058">Sona will use this name on every call, just like you do.</span>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 2px">
+        <sc-for list="{{relations}}" as="r" hint-placeholder-count="5">
+          <button type="button" onClick="{{r.pick}}" style="min-height: 44px; padding: 0 16px; border-radius: 999px; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; border: 1px solid #E3D8C6; background: #F3ECDF; color: #4A403A">{{r.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="pphone" style="font-weight: 600; font-size: 16px">Their phone number</label>
+      <div style="display: flex; gap: 10px">
+        <span style="height: 58px; box-sizing: border-box; border: 1.5px solid #DCD0BC; border-radius: 16px; background: #F3ECDF; padding: 0 16px; display: flex; align-items: center; font-size: 18px; font-weight: 600">+91</span>
+        <input id="pphone" type="tel" inputmode="numeric" value="94401 67890" style="flex: 1; min-width: 0; height: 58px; box-sizing: border-box; border: 1.5px solid #DCD0BC; border-radius: 16px; background: #FFFDF8; padding: 0 18px; font: inherit; font-size: 18px; color: #2A2420">
+      </div>
+      <span style="font-size: 14px; color: #6B6058">A basic phone or landline works fine.</span>
+    </div>
+
+    <fieldset style="border: 0; margin: 0; padding: 0">
+      <legend style="font-weight: 600; font-size: 16px; padding: 0; margin-bottom: 10px">Language they speak</legend>
+      <div style="display: flex; flex-wrap: wrap; gap: 10px">
+        <sc-for list="{{languages}}" as="l" hint-placeholder-count="7">
+          <button type="button" aria-pressed="{{l.on}}" onClick="{{l.pick}}" style="min-height: 48px; padding: 0 18px; border-radius: 999px; font: inherit; font-size: 17px; font-weight: 600; cursor: pointer; border: 1.5px solid {{l.border}}; background: {{l.bg}}; color: {{l.fg}}">{{l.label}}</button>
+        </sc-for>
+      </div>
+    </fieldset>
+
+    <fieldset style="border: 0; margin: 0; padding: 0">
+      <legend style="font-weight: 600; font-size: 16px; padding: 0; margin-bottom: 10px">When should Sona call?</legend>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <sc-for list="{{slots}}" as="s" hint-placeholder-count="2">
+          <button type="button" aria-pressed="{{s.on}}" onClick="{{s.pick}}" style="min-height: 112px; padding: 14px; border-radius: 18px; font: inherit; text-align: left; cursor: pointer; border: 2px solid {{s.border}}; background: {{s.bg}}; color: #2A2420; display: flex; flex-direction: column; gap: 4px">
+            <span style="font-size: 14px; font-weight: 700; color: {{s.accent}}">{{s.label}}</span>
+            <span style="font-family: 'Fraunces', Georgia, serif; font-size: 26px; line-height: 1.1">{{s.time}}</span>
+            <span style="font-size: 14px; color: #6B6058">{{s.hint}}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="margin-top: 12px; display: flex; align-items: center; gap: 12px">
+        <label for="ptime" style="font-size: 15px; color: #4A403A; flex-shrink: 0">Exact time</label>
+        <input id="ptime" type="time" value="{{slotTime}}" style="flex: 1; min-width: 0; height: 52px; box-sizing: border-box; border: 1.5px solid #DCD0BC; border-radius: 14px; background: #FFFDF8; padding: 0 14px; font: inherit; font-size: 17px; color: #2A2420">
+      </div>
+      <p style="margin: 8px 0 0; font-size: 14px; color: #6B6058">Pick when they're relaxed and near the phone. Sona changes her questions to match.</p>
+    </fieldset>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="meds" style="font-weight: 600; font-size: 16px">Medicines and timing <span style="font-weight: 400; color: #6B6058">(optional)</span></label>
+      <textarea id="meds" rows="3" placeholder="BP tablet after breakfast, sugar tablet after dinner" style="box-sizing: border-box; border: 1.5px solid #DCD0BC; border-radius: 16px; background: #FFFDF8; padding: 14px 18px; font: inherit; font-size: 17px; color: #2A2420; resize: vertical">BP tablet in the morning, evening tablet after dinner</textarea>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="watch" style="font-weight: 600; font-size: 16px">Anything Sona should check on? <span style="font-weight: 400; color: #6B6058">(optional)</span></label>
+      <input id="watch" type="text" placeholder="For example, knee pain" value="Knee pain" style="height: 58px; box-sizing: border-box; border: 1.5px solid #DCD0BC; border-radius: 16px; background: #FFFDF8; padding: 0 18px; font: inherit; font-size: 18px; color: #2A2420">
+    </div>
+  </div>
+
+  <a href="Onboard3.dc.html" style="margin-top: 40px; text-decoration: none; background: #1F4D3A; color: #FFFDF8; font-weight: 600; font-size: 18px; min-height: 58px; border-radius: 999px; display: flex; align-items: center; justify-content: center; gap: 10px">Continue
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1380}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { relation: "Ammi", language: "Hindi", slot: "morning" };
+  }
+  chip(label, on, pick) {
+    return {
+      label: label,
+      on: on ? "true" : "false",
+      pick: pick,
+      bg: on ? "#1F4D3A" : "#FFFDF8",
+      fg: on ? "#FFFDF8" : "#2A2420",
+      border: on ? "#1F4D3A" : "#DCD0BC"
+    };
+  }
+  renderVals() {
+    const rel = ["Ammi", "Papa", "Amma", "Mummy", "Nanaji"];
+    const lang = ["Hindi", "English", "Telugu", "Tamil", "Kannada", "Marathi", "Bengali"];
+    const slotDefs = [
+      { k: "morning", label: "Morning", time: "9:30 AM", hint: "After breakfast", v: "09:30" },
+      { k: "evening", label: "Evening", time: "8:00 PM", hint: "After dinner", v: "20:00" }
+    ];
+    const cur = slotDefs.find((s) => s.k === this.state.slot);
+    return {
+      relation: this.state.relation,
+      onRelation: (e) => this.setState({ relation: e.target.value }),
+      relations: rel.map((r) => ({ label: r, pick: () => this.setState({ relation: r }) })),
+      slots: slotDefs.map((s) => {
+        const on = s.k === this.state.slot;
+        return { label: s.label, time: s.time, hint: s.hint, on: on ? "true" : "false", pick: () => this.setState({ slot: s.k }), border: on ? "#1F4D3A" : "#DCD0BC", bg: on ? "#EEF4EC" : "#FFFDF8", accent: on ? "#1F4D3A" : "#8E4220" };
+      }),
+      slotTime: cur.v,
+      languages: lang.map((l) => this.chip(l, this.state.language === l, () => this.setState({ language: l })))
+    };
+  }
+}
+</script>
+</body>
+</html>
