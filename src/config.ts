@@ -16,9 +16,10 @@ export const LEGAL_LAST_UPDATED = "4 October 2026";
 
 export const FOUNDER_NAME = "Feroz";
 
-// Temporary list until invite codes move to the invite_codes table in Phase 2.
-// Not case sensitive. Visible in the browser bundle, so treat it as a gentle gate.
-export const INVITE_CODES = ["FAMILY2026", "AMURA", "FIRST50"];
+// Invite codes live in the invite_codes table and are checked on the server, so
+// they no longer ship to the browser. This list is only a fallback for when
+// Supabase is not configured yet; delete it once the project is set up.
+export const FALLBACK_INVITE_CODES = ["FAMILY2026", "AMURA", "FIRST50"];
 
 export const signupWhatsAppUrl = (code: string) =>
   `https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(

@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState, type FormEvent } from "react";
-import { APP_NAME, COMPANY, INVITE_CODES, founderWhatsAppUrl } from "@/config";
+import { useState, useTransition, type FormEvent } from "react";
+import { APP_NAME, COMPANY, founderWhatsAppUrl } from "@/config";
+import { checkInviteCode } from "@/lib/invite";
 import { Chat } from "./icons";
 
 const legal = [
@@ -17,17 +18,20 @@ export function FinalCta() {
   const router = useRouter();
   const [code, setCode] = useState("");
   const [error, setError] = useState(false);
+  const [checking, startChecking] = useTransition();
 
-  // Same gate as the invite dialog: a known code goes straight to sign up.
+  // The code is checked on the server, so the code list never reaches the browser.
   const submit = (e: FormEvent) => {
     e.preventDefault();
     const entered = code.trim().toUpperCase();
     if (!entered) return;
-    if (INVITE_CODES.map((x) => x.toUpperCase()).includes(entered)) {
-      router.push(`/signup?code=${encodeURIComponent(entered)}`);
-    } else {
-      setError(true);
-    }
+    startChecking(async () => {
+      if (await checkInviteCode(entered)) {
+        router.push(`/signup?code=${encodeURIComponent(entered)}`);
+      } else {
+        setError(true);
+      }
+    });
   };
 
   return (
@@ -54,7 +58,7 @@ export function FinalCta() {
             autoCapitalize="characters"
             spellCheck={false}
           />
-          <button type="submit">Start free trial</button>
+          <button type="submit" disabled={checking}>{checking ? "Checking\u2026" : "Start free trial"}</button>
         </form>
         {error ? (
           <p role="alert" className="code-error">

@@ -16,6 +16,14 @@ The product name may change, so keep it in ONE config value (APP_NAME), never ha
 - Parent company site: fimolabs.com
 - This product: checkin.fimolabs.com (Vercel project, deployed from GitHub on every push to main)
 
+## Phase 2 status
+Supabase auth, the schema and onboarding are built. See `supabase/SETUP.md` for
+the one time project setup and the env vars. Until `NEXT_PUBLIC_SUPABASE_URL`
+and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are set, the app degrades on purpose: invite
+codes fall back to `FALLBACK_INVITE_CODES` in config, and `/signup` hands off to
+WhatsApp instead of showing the sign up form. Onboarding ends on a done screen,
+not `/dashboard`, because that arrives in Phase 3.
+
 ## Landing page redesign (current)
 The landing page was redesigned and no longer follows the tokens below, which still describe the
 app screens. It lives in `src/components/checkin/` (one component per section, copy in `data.ts`,

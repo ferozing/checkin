@@ -2,7 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { INVITE_CODES, founderWhatsAppUrl } from "@/config";
+import { founderWhatsAppUrl } from "@/config";
+import { checkInviteCode } from "@/lib/invite";
 
 const InviteContext = createContext<() => void>(() => {});
 
@@ -18,10 +19,10 @@ export function InviteProvider({ children }: { children: ReactNode }) {
   }, []);
   const close = () => ref.current?.close();
 
-  const submit = (e: FormEvent) => {
+  const submit = async (e: FormEvent) => {
     e.preventDefault();
     const c = code.trim().toUpperCase();
-    if (INVITE_CODES.map((x) => x.toUpperCase()).includes(c)) {
+    if (await checkInviteCode(c)) {
       close();
       router.push(`/signup?code=${encodeURIComponent(c)}`);
     } else {
