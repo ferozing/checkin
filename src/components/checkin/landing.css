@@ -49,7 +49,7 @@
 .ci .hero { background: #fff; padding: 0 var(--pad-x) clamp(56px, 7vw, 96px); position: relative; overflow: hidden; }
 .ci .nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 22px 0; }
 .ci .brand { display: flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; }
-.ci .brand span { font-family: var(--serif); font-size: 25px; font-weight: 600; letter-spacing: -0.02em; font-variation-settings: 'SOFT' 100; }
+.ci .brand span { font-family: var(--serif); font-size: 25px; font-weight: 600; letter-spacing: -0.02em; font-variation-settings: 'SOFT' 100; text-transform: lowercase; }
 .ci .nav-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; font-size: 15px; }
 .ci .nav-links a { color: var(--text-2); text-decoration: none; padding: 12px; border-radius: 999px; }
 .ci .nav-links a:hover { color: var(--ink); }
@@ -116,7 +116,7 @@
   align-items: center; justify-content: center; gap: 4px; color: #1E2A22; transition: background .4s ease;
 }
 .ci .kp-top { font-size: 11px; font-weight: 700; letter-spacing: 0.04em; }
-.ci .kp-name { font-size: 15px; font-weight: 800; line-height: 1.1; text-align: center; padding: 0 6px; }
+.ci .kp-name { font-size: 17px; font-weight: 800; line-height: 1.1; text-align: center; }
 .ci .kp-bottom { font-size: 12px; font-weight: 600; font-variant-numeric: tabular-nums; }
 .ci .keypad-keys { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
 .ci .keypad-keys span { height: 16px; border-radius: 6px; background: #3D3C38; }
