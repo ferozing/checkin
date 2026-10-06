@@ -16,6 +16,13 @@ The product name may change, so keep it in ONE config value (APP_NAME), never ha
 - Parent company site: fimolabs.com
 - This product: checkin.fimolabs.com (Vercel project, deployed from GitHub on every push to main)
 
+## Landing page redesign (current)
+The landing page was redesigned and no longer follows the tokens below, which still describe the
+app screens. It lives in `src/components/checkin/` (one component per section, copy in `data.ts`,
+styles in `landing.css` scoped under `.ci`) and uses a warmer palette: white hero, orange accent
+#E8743F, peach #FFE6D2, green #B4E4AA, navy close #1B2340. It carries its own header and footer,
+so it does not use SiteHeader / SiteFooter. `design/Main.dc.html` is the older landing prototype.
+
 ## Design (the "first design", must match)
 Visual reference lives in /design as HTML prototypes (one file per screen). They use a prototype template syntax ({{ }}, sc-for, sc-if, x-dc). Treat them as pixel reference only: copy layout, copy, spacing, colours and animations, and rebuild them as real React components. Do not ship those files.
 

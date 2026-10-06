@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { TextLink } from "@/components/LegalPage";
 import { COMPANY } from "@/config";
@@ -16,7 +17,7 @@ export default function ContactPage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-[760px] px-[clamp(20px,4vw,32px)] pt-[clamp(24px,5vw,56px)] pb-[clamp(64px,9vw,112px)]">
+      <main className="flex-1 mx-auto w-full max-w-[760px] px-[clamp(20px,4vw,32px)] pt-[clamp(24px,5vw,56px)] pb-[clamp(64px,9vw,112px)]">
         <h1 className="font-serif text-[clamp(40px,5.6vw,64px)] leading-[1.05] font-medium tracking-[-0.02em]">Contact us</h1>
         <p className="mt-3 text-[15px] text-muted">We usually reply within one working day.</p>
         <dl className="mt-9 grid gap-3.5">
@@ -40,6 +41,7 @@ export default function ContactPage() {
           delete your data, see our <TextLink href="/privacy">privacy policy</TextLink>.
         </p>
       </main>
+      <SiteFooter />
     </>
   );
 }

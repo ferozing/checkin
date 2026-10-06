@@ -1,15 +1,17 @@
 import type { ReactNode } from "react";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export function LegalPage({ title, intro, children }: { title: string; intro?: ReactNode; children: ReactNode }) {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-[760px] px-[clamp(20px,4vw,32px)] pt-[clamp(24px,5vw,56px)] pb-[clamp(64px,9vw,112px)]">
+      <main className="flex-1 mx-auto w-full max-w-[760px] px-[clamp(20px,4vw,32px)] pt-[clamp(24px,5vw,56px)] pb-[clamp(64px,9vw,112px)]">
         <h1 className="font-serif text-[clamp(40px,5.6vw,64px)] leading-[1.05] font-medium tracking-[-0.02em]">{title}</h1>
         {intro ? <p className="mt-3 text-[15px] text-muted">{intro}</p> : null}
         <div>{children}</div>
       </main>
+      <SiteFooter />
     </>
   );
 }

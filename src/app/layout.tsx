@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Caveat, Figtree, Fraunces } from "next/font/google";
-import { SiteFooter } from "@/components/SiteFooter";
 import { APP_NAME } from "@/config";
 import "./globals.css";
 
@@ -8,7 +7,7 @@ const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   style: ["normal", "italic"],
-  axes: ["opsz"],
+  axes: ["SOFT", "opsz"],
   display: "swap",
 });
 
@@ -34,10 +33,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${fraunces.variable} ${figtree.variable} ${caveat.variable}`}>
-      <body className="flex min-h-screen flex-col">
-        <div className="flex-1">{children}</div>
-        <SiteFooter />
-      </body>
+      <body className="flex min-h-screen flex-col">{children}</body>
     </html>
   );
 }
