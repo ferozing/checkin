@@ -2,7 +2,7 @@
 
 import { APP_NAME, TRIAL_DAYS } from "@/config";
 import { scenes } from "./data";
-import { Mark, Pin, Tick } from "./icons";
+import { MarkGlyph, Pin } from "./icons";
 import { useLandingTick } from "./useLandingTick";
 
 const LOOP = 220;
@@ -53,8 +53,8 @@ export function Hero() {
       <div className="inner">
         <nav className="nav" aria-label="Main">
           <a href="#top" className="brand">
-            <Mark />
-            <span>{APP_NAME}</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/brand/logo.svg" alt={APP_NAME} width={183} height={40} />
           </a>
           <div className="nav-links">
             <a href="#note" className={navLink}>The daily note</a>
@@ -162,7 +162,7 @@ export function Hero() {
                   </div>
                   <div className="banner">
                     <span className="banner-icon">
-                      <Tick stroke="#FBF6EC" />
+                      <MarkGlyph letter="#FBF6EC" size={18} />
                     </span>
                     <div className="banner-copy">
                       <span className="banner-app">
@@ -174,7 +174,7 @@ export function Hero() {
                   <div className="wa">
                     <div className="wa-bar">
                       <span className="wa-avatar">
-                        <Tick stroke="#1E1B17" />
+                        <MarkGlyph letter="#1E1B17" size={16} />
                       </span>
                       <span className="wa-name">{APP_NAME}</span>
                     </div>
