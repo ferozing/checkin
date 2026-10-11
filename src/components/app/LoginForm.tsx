@@ -8,7 +8,7 @@ const googleBtn =
   "flex min-h-[52px] w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl border-[1.5px] border-ink bg-white text-[16px] font-semibold text-ink disabled:opacity-70";
 
 /** Google and an email sign in link, as in the design. */
-export function LoginForm({ code }: { code: string }) {
+export function LoginForm({ code, google }: { code: string; google: boolean }) {
   const [email, setEmail] = useState("");
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState<"google" | "email" | null>(null);
@@ -68,6 +68,8 @@ export function LoginForm({ code }: { code: string }) {
 
   return (
     <>
+      {google ? (
+        <>
       <button type="button" onClick={withGoogle} disabled={busy !== null} className={googleBtn}>
         <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true">
           <path fill="#4285F4" d="M45 24c0-1.6-.1-2.7-.4-3.9H24v7.1h12c-.2 1.8-1.5 4.6-4.4 6.4l6.7 5.2C42.2 35.1 45 30 45 24z" />
@@ -83,6 +85,8 @@ export function LoginForm({ code }: { code: string }) {
         or
         <span className="h-px flex-1 bg-line" />
       </div>
+        </>
+      ) : null}
 
       <form onSubmit={withEmail} noValidate className="flex flex-col gap-2">
         <label htmlFor="email" className={labelText}>Email</label>

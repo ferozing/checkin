@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { LoginForm } from "@/components/app/LoginForm";
 import { Mark } from "@/components/app/Mark";
 import { APP_NAME, founderWhatsAppUrl } from "@/config";
+import { enabledProviders } from "@/lib/authProviders";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { getUser } from "@/lib/supabase/server";
 
@@ -14,6 +15,8 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
 
   if (isSupabaseConfigured && (await getUser())) redirect("/onboarding/you");
 
+  const providers = await enabledProviders();
+
   return (
     <main className="flex min-h-screen flex-1 items-center justify-center bg-sand px-[18px] py-8">
       <div className="flex w-full max-w-[420px] flex-col gap-[18px] rounded-[22px] border border-line bg-paper px-[26px] py-8">
@@ -24,7 +27,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
         </p>
 
         {isSupabaseConfigured ? (
-          <LoginForm code={invite} />
+          <LoginForm code={invite} google={providers.google} />
         ) : (
           <p className="rounded-[14px] bg-amber-bg px-5 py-4 text-[15px] leading-[1.5] text-amber">
             Sign in is not switched on yet. Message us on WhatsApp and we&apos;ll set your family up
