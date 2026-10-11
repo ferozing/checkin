@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CardChoice, Field, ghost, primary } from "@/components/app/form";
+import { CardChoice, Field, SubmitButton, ghost } from "@/components/app/form";
 import { StepNav } from "@/components/app/OnboardingShell";
 import { finishOnboarding } from "@/lib/onboarding";
 import type { Parent } from "@/lib/session";
@@ -86,7 +86,7 @@ export function StepTell({
       </Field>
 
       <StepNav back="/onboarding/call">
-        <button type="submit" className={primary}>Start my {trialDays} day free trial</button>
+        <SubmitButton>Start my {trialDays} day free trial</SubmitButton>
       </StepNav>
     </form>
   );

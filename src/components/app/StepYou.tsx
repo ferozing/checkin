@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Field, PhonePrefix, field, primary } from "@/components/app/form";
+import { Field, PhonePrefix, SubmitButton, field } from "@/components/app/form";
 import { StepNav } from "@/components/app/OnboardingShell";
 import { APP_NAME } from "@/config";
 import { saveProfile } from "@/lib/onboarding";
@@ -65,7 +65,7 @@ export function StepYou({
       </label>
 
       <StepNav back="/login">
-        <button type="submit" className={primary}>Continue</button>
+        <SubmitButton>Continue</SubmitButton>
       </StepNav>
     </form>
   );

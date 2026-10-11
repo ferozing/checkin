@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CardChoice, Chip, Field, field, primary } from "@/components/app/form";
+import { CardChoice, Chip, Field, SubmitButton, field } from "@/components/app/form";
 import { StepNav } from "@/components/app/OnboardingShell";
 import { saveCall } from "@/lib/onboarding";
 import type { Parent } from "@/lib/session";
@@ -117,7 +117,7 @@ export function StepCall({ parent }: { parent: Parent }) {
       </Field>
 
       <StepNav back="/onboarding/parent">
-        <button type="submit" className={primary}>Continue</button>
+        <SubmitButton>Continue</SubmitButton>
       </StepNav>
     </form>
   );

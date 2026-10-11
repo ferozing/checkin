@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Chip, Field, field, primary } from "@/components/app/form";
+import { Chip, Field, SubmitButton, field } from "@/components/app/form";
 import { StepNav } from "@/components/app/OnboardingShell";
 import { saveParent } from "@/lib/onboarding";
 import type { Parent } from "@/lib/session";
@@ -60,7 +60,7 @@ export function StepParent({ parent }: { parent: Parent | null }) {
       </Field>
 
       <StepNav back="/onboarding/you">
-        <button type="submit" className={primary}>Continue</button>
+        <SubmitButton>Continue</SubmitButton>
       </StepNav>
     </form>
   );

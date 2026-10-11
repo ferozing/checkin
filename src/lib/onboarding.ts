@@ -38,8 +38,11 @@ export async function saveProfile(formData: FormData) {
   ).trim().toUpperCase();
   if (!code) redirect("/login");
 
-  const { data: valid } = await supabase.rpc("invite_code_is_valid", { p_code: code });
-  if (valid !== true) redirect(`/onboarding/you?code=${encodeURIComponent(code)}&bad=1`);
+  // redeem_invite_code checks and spends the code in one statement, so this is
+  // one round trip rather than a check followed by a spend. The database is in
+  // another region, and every hop is felt on the Continue button.
+  const { data: redeemed } = await supabase.rpc("redeem_invite_code", { p_code: code });
+  if (redeemed !== true) redirect(`/onboarding/you?code=${encodeURIComponent(code)}&bad=1`);
 
   await supabase.from("profiles").upsert({
     id: user.id,
@@ -47,8 +50,6 @@ export async function saveProfile(formData: FormData) {
     whatsapp,
     whatsapp_opt_in: formData.get("opt_in") === "on",
   });
-  // Spend the code only once the profile is saved.
-  await supabase.rpc("redeem_invite_code", { p_code: code });
   redirect("/onboarding/parent");
 }
 
