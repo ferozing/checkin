@@ -108,14 +108,25 @@ export function SubmitButton({
   children,
   pending: pendingLabel = "Saving…",
   className = primary,
+  disabledReason,
 }: {
   children: ReactNode;
   pending?: string;
   className?: string;
+  /** Set to block the step, and to say why for a screen reader. */
+  disabledReason?: string;
 }) {
   const { pending } = useFormStatus();
+  const blocked = pending || !!disabledReason;
   return (
-    <button type="submit" disabled={pending} aria-busy={pending} className={className}>
+    <button
+      type="submit"
+      disabled={blocked}
+      aria-busy={pending}
+      title={disabledReason}
+      aria-label={disabledReason}
+      className={className}
+    >
       {pending ? (
         <>
           <Spinner />

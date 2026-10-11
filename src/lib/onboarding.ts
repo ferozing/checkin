@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { TRIAL_DAYS } from "@/config";
+import { samePhone } from "@/lib/phone";
 import { createClient } from "@/lib/supabase/server";
 
 const str = (f: FormData, k: string) => String(f.get(k) ?? "").trim();
@@ -60,6 +61,15 @@ export async function saveParent(formData: FormData) {
   if (!name || !phone) return;
 
   const { supabase, user, parent } = await myParent();
+
+  // Sona calls this number every morning. If it is the person signing up, the
+  // calls go to them instead of their parent, which is never what they meant.
+  const { data: profile } = await supabase
+    .from("profiles").select("whatsapp").eq("id", user.id).maybeSingle();
+  if (profile?.whatsapp && samePhone(profile.whatsapp, phone)) {
+    redirect("/onboarding/parent?same=1");
+  }
+
   const row = {
     user_id: user.id,
     name,

@@ -8,22 +8,31 @@ import type { Parent } from "@/lib/session";
 
 export function StepTell({
   parent,
+  language,
   message,
+  englishMessage,
   timeLabel,
   trialDays,
 }: {
   parent: Parent;
+  language: string;
   message: string;
+  englishMessage: string;
   timeLabel: string;
   trialDays: number;
 }) {
   const [when, setWhen] = useState<"tomorrow" | "today">("tomorrow");
+  const [inEnglish, setInEnglish] = useState(false);
   const [copied, setCopied] = useState(false);
   const callName = parent.call_name || parent.name;
 
+  // Plenty of people speak their mother tongue but cannot read the script.
+  const canSwitch = language !== "English";
+  const shown = inEnglish ? englishMessage : message;
+
   const copy = async () => {
     try {
-      await navigator.clipboard.writeText(message);
+      await navigator.clipboard.writeText(shown);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
@@ -33,16 +42,40 @@ export function StepTell({
 
   return (
     <form action={finishOnboarding} className="flex flex-col gap-5">
+      {canSwitch && (
+        <div className="flex items-center gap-1.5 text-[13px]">
+          <span className="text-muted">Written in</span>
+          <div className="inline-flex overflow-hidden rounded-lg border border-line">
+            {[
+              { label: language, on: !inEnglish, go: () => setInEnglish(false) },
+              { label: "English", on: inEnglish, go: () => setInEnglish(true) },
+            ].map((t) => (
+              <button
+                key={t.label}
+                type="button"
+                onClick={t.go}
+                aria-pressed={t.on}
+                className={`min-h-9 px-3 text-[13px] font-semibold ${
+                  t.on ? "bg-ink text-paper" : "bg-transparent text-body"
+                }`}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* The message as it will look in WhatsApp. */}
       <div className="rounded-2xl bg-wa-chat p-3.5">
-        <div className="ml-[12%] rounded-[10px_0_10px_10px] bg-wa-sent px-3.5 py-3 text-[15px] leading-[1.55] text-wa-ink">
-          {message}
+        <div className="ml-[12%] whitespace-pre-line rounded-[10px_0_10px_10px] bg-wa-sent px-3.5 py-3 text-[15px] leading-[1.55] text-wa-ink">
+          {shown}
         </div>
       </div>
 
       <div className="flex flex-wrap gap-2.5">
         <a
-          href={`https://wa.me/?text=${encodeURIComponent(message)}`}
+          href={`https://wa.me/?text=${encodeURIComponent(shown)}`}
           target="_blank"
           rel="noopener"
           className="inline-flex min-h-11 items-center rounded-xl bg-ink px-4 text-[15px] font-semibold text-paper no-underline"
