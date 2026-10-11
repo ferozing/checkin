@@ -27,22 +27,13 @@ export function StepYou({
         <input id="name" name="name" required defaultValue={name} placeholder="Ravi Kumar" autoComplete="name" className={field} />
       </Field>
 
-      <Field
-        id="code"
-        label="Invite code"
-        hint={badCode ? <span className="font-semibold text-red">That code didn&apos;t work. Check it, or message us for one.</span> : undefined}
-      >
-        <input
-          id="code"
-          name="code"
-          required
-          defaultValue={code}
-          placeholder="FIRST50"
-          autoCapitalize="characters"
-          autoComplete="off"
-          className={`${field} uppercase placeholder:normal-case`}
-        />
-      </Field>
+      {/* The code was checked before the email went out. Carried, not asked again. */}
+      <input type="hidden" name="code" value={code} />
+      {badCode ? (
+        <p role="alert" className="text-[15px] font-semibold text-red">
+          That invite code didn&apos;t work. Message us and we&apos;ll sort it out.
+        </p>
+      ) : null}
 
       <Field id="whatsapp" label="Your WhatsApp number">
         <div className="flex gap-2">

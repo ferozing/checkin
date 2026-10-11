@@ -30,10 +30,13 @@ async function myParent() {
 export async function saveProfile(formData: FormData) {
   const name = str(formData, "name");
   const whatsapp = str(formData, "whatsapp");
-  const code = str(formData, "code").toUpperCase();
-  if (!name || !whatsapp || !code) return;
+  if (!name || !whatsapp) return;
 
   const { supabase, user } = await me();
+  const code = (
+    str(formData, "code") || String(user.user_metadata?.invite_code ?? "")
+  ).trim().toUpperCase();
+  if (!code) redirect("/login");
 
   const { data: valid } = await supabase.rpc("invite_code_is_valid", { p_code: code });
   if (valid !== true) redirect(`/onboarding/you?code=${encodeURIComponent(code)}&bad=1`);
