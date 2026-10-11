@@ -3,11 +3,16 @@ export const APP_NAME = "Checkin";
 
 export const COMPANY = {
   name: "Fimo Labs",
+  legalName: "FIMO LABS",
   email: "pm.ferozmd@gmail.com",
   phoneDisplay: "+91 96293 81945",
   phoneE164: "+919629381945",
   whatsapp: "919629381945",
-  address: "7G, Velachery, Chennai 600042",
+  address: "Velachery, Chennai",
+  // Where the enterprise is Udyam registered, for the footer line. The contact
+  // address above is separate.
+  registeredState: "Andhra Pradesh, India",
+  themeColor: "#FFFDF9",
 };
 
 export const PRICE_PER_MONTH = "₹399";

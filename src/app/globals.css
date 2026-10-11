@@ -1,26 +1,26 @@
 @import "tailwindcss";
 
-/* Design tokens from CLAUDE.md */
+/* Design tokens from CLAUDE.md. "Trust first": calm, editorial, human. */
 @theme {
-  --color-cream: #FBF6EC;
-  --color-card: #FFFDF8;
-  --color-sand: #F3ECDF;
-  --color-line: #ECE3D3;
+  /* Surfaces */
+  --color-paper: #FFFDF9;
+  --color-sand: #F6F0E6;
+  --color-panel: #FBF7F0;
+  --color-line: #ECE4D8;
   --color-line-strong: #DCD0BC;
 
-  --color-ink: #2A2420;
-  --color-ink-2: #5E544D;
-  --color-muted: #6B6058;
-  --color-nav: #4A403A;
+  /* Text */
+  --color-ink: #191714;
+  --color-body: #4A443D;
+  --color-muted: #6B6359;
+  --color-faint: #7A7268;
 
-  --color-green: #1F4D3A;
-  --color-green-hover: #173B2C;
-  --color-green-soft: #E6EFE7;
+  /* Brand and actions */
+  --color-brand: #E8743F;
+  --color-primary: #C2501D;
+  --color-primary-hover: #A8441A;
 
-  --color-terracotta: #B4532A;
-  --color-terracotta-text: #8E4220;
-  --color-terracotta-soft: #F6E6DC;
-
+  /* Status */
   --color-good: #2D6A45;
   --color-good-bg: #E6F1E8;
   --color-good-dot: #3E8E5C;
@@ -29,44 +29,57 @@
   --color-amber-dot: #D69A2D;
   --color-red: #9A3A24;
   --color-red-bg: #F9E6DF;
-  --color-red-dot: #C4553A;
-  --color-waiting: #3F4B55;
-  --color-waiting-bg: #ECEEEC;
   --color-missed: #6B5440;
   --color-missed-bg: #F2ECE4;
+  --color-missed-dot: #9C8B78;
 
-  --font-serif: var(--font-fraunces), Georgia, serif;
-  --font-sans: var(--font-figtree), system-ui, sans-serif;
+  /* Real WhatsApp colours, for the message mockups only */
+  --color-wa-header: #008069;
+  --color-wa-chat: #EFEAE2;
+  --color-wa-sent: #D9FDD3;
+  --color-wa-ink: #111B21;
+  --color-wa-meta: #667781;
+
+  --font-serif: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-instrument-sans), system-ui, sans-serif;
   --font-hand: var(--font-caveat), cursive;
 
-  --shadow-soft: 0 1px 2px rgba(42, 36, 32, 0.04), 0 16px 40px rgba(42, 36, 32, 0.06);
+  /* Aliases kept so the screens that Phase 2 and the legal phase will rebuild
+     still compile. Remove them once those screens are redrawn. */
+  --color-cream: #FFFDF9;
+  --color-card: #FFFDF9;
+  --color-ink-2: #4A443D;
+  --color-nav: #4A443D;
+  --color-green: #C2501D;
+  --color-green-hover: #A8441A;
+  --color-green-soft: #F6E6DC;
+  --color-terracotta: #C2501D;
+  --color-terracotta-text: #8E4220;
+  --color-terracotta-soft: #F6E6DC;
 }
 
-html {
-  background: var(--color-cream);
-}
-
+html { background: var(--color-paper); }
 body {
-  background: var(--color-cream);
+  background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-size: 18px;
-  line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
 a:focus-visible,
-button:focus-visible {
-  outline: 3px solid var(--color-terracotta);
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--color-primary);
   outline-offset: 3px;
 }
 
+/* Very little animation, per the design. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     transition: none !important;
     animation: none !important;
+    scroll-behavior: auto !important;
   }
 }

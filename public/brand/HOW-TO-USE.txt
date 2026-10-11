@@ -1,0 +1,19 @@
+Checkin logo kit (Option B: the c that speaks)
+
+Colours
+  Ink     #191714
+  Cream   #FFFDF9
+  Orange  #E8743F
+Font in the wordmark: Instrument Sans SemiBold (already converted to shapes, no font needed)
+
+Where each file goes
+  WhatsApp Business profile photo ....... png/whatsapp-profile-photo-640.png
+  Website header (light background) ..... svg/checkin-logo.svg
+  Website footer / dark background ...... svg/checkin-logo-on-dark.svg
+  Browser tab icon ...................... favicon.ico + svg/checkin-favicon.svg
+  iPhone home screen icon ............... png/apple-touch-icon-180.png
+  Android / web app icon ................ png/checkin-icon-192.png and png/checkin-icon-512.png
+  App store / social posts .............. png/checkin-icon-1024.png
+  Docs, slides, emails .................. png/checkin-logo-2x.png
+
+Always prefer the SVG files on the website. Use PNGs where SVG is not accepted.

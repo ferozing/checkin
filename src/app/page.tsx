@@ -1,24 +1,27 @@
-import { FinalCta } from "@/components/checkin/FinalCta";
-import { Hero } from "@/components/checkin/Hero";
-import { MeetSona } from "@/components/checkin/MeetSona";
-import { Safety } from "@/components/checkin/Safety";
-import { SetupPricing } from "@/components/checkin/SetupPricing";
-import { WeekNote } from "@/components/checkin/WeekNote";
-import "@/components/checkin/landing.css";
+import { DailyNote } from "@/components/home/DailyNote";
+import { FactStrip } from "@/components/home/FactStrip";
+import { FinalCta } from "@/components/home/FinalCta";
+import { FounderNote } from "@/components/home/FounderNote";
+import { Hero } from "@/components/home/Hero";
+import { Listen } from "@/components/home/Listen";
+import { Nav } from "@/components/home/Nav";
+import { Pricing } from "@/components/home/Pricing";
+import { Promise as PromiseSection } from "@/components/home/Promise";
 
-// The landing page carries its own header and footer, so it does not use
-// SiteHeader / SiteFooter. Everything is scoped under .ci.
 export default function Home() {
   return (
-    <div className="ci">
-      <main>
+    <>
+      <Nav />
+      <main className="flex-1">
         <Hero />
-        <WeekNote />
-        <MeetSona />
-        <Safety />
-        <SetupPricing />
+        <FactStrip />
+        <DailyNote />
+        <Listen />
+        <PromiseSection />
+        <FounderNote />
+        <Pricing />
+        <FinalCta />
       </main>
-      <FinalCta />
-    </div>
+    </>
   );
 }
