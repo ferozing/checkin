@@ -59,7 +59,11 @@
 }
 
 html { background: var(--color-paper); }
+/* The whole site sits one notch smaller than the design file, so more of each
+   section fits on screen. Nothing is positioned fixed or sticky, so a page
+   level zoom is safe here. */
 body {
+  zoom: 0.8;
   background: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-sans);
