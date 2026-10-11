@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Mark } from "@/components/app/Mark";
 import { ghost } from "@/components/app/form";
-import { APP_NAME, COMPANY, founderWhatsAppUrl } from "@/config";
+import { COMPANY, founderWhatsAppUrl } from "@/config";
 import { getParent, getProfile, requireUser } from "@/lib/session";
 
 export const metadata: Metadata = { title: "First call booked" };
@@ -85,15 +86,17 @@ export default async function FirstCall() {
           Sona calls from {COMPANY.callerDisplay}. Ask {callName} to save it, so they know to pick up.
         </p>
 
-        {/* The dashboard and the test call both arrive with later phases. Until
-            then this points at the one thing that works today. */}
-        <a href={founderWhatsAppUrl()} target="_blank" rel="noopener" className={`${ghost} self-start`}>
-          Message us on WhatsApp
-        </a>
-        <p className="text-[14px] text-muted">
-          Your {APP_NAME} dashboard and the test call are coming shortly. We&apos;ll message you the
-          moment they are ready.
-        </p>
+        <div className="flex flex-wrap gap-2.5">
+          <Link
+            href="/app"
+            className="inline-flex min-h-[52px] items-center rounded-xl bg-primary px-5 text-[16px] font-semibold text-white no-underline"
+          >
+            Go to my dashboard
+          </Link>
+          <a href={founderWhatsAppUrl()} target="_blank" rel="noopener" className={ghost}>
+            Message us on WhatsApp
+          </a>
+        </div>
       </div>
     </main>
   );

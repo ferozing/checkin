@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { OnboardingShell, StepIntro, StepTitle } from "@/components/app/OnboardingShell";
 import { StepYou } from "@/components/app/StepYou";
-import { getProfile, requireUser } from "@/lib/session";
+import { redirect } from "next/navigation";
+import { getParent, getProfile, requireUser } from "@/lib/session";
 
 export const metadata: Metadata = { title: "About you" };
 
 export default async function AboutYou({ searchParams }: PageProps<"/onboarding/you">) {
   await requireUser();
+  // Already set up? Go straight to the app.
+  if (await getParent()) redirect("/app");
   const profile = await getProfile();
   const { code, bad } = await searchParams;
 

@@ -13,7 +13,7 @@ export default async function LoginPage({ searchParams }: PageProps<"/login">) {
   const { code } = await searchParams;
   const invite = typeof code === "string" ? code.trim().toUpperCase() : "";
 
-  if (isSupabaseConfigured && (await getUser())) redirect("/onboarding/you");
+  if (isSupabaseConfigured && (await getUser())) redirect("/app");
 
   const providers = await enabledProviders();
 

@@ -35,6 +35,9 @@ export type Parent = {
   watch_for: string[] | null;
   topics: string | null;
   first_call_at: string | null;
+  paused: boolean;
+  consent_status: "pending" | "given" | "declined";
+  recording_consent: boolean;
 };
 
 export async function getParent(): Promise<Parent | null> {
@@ -43,7 +46,7 @@ export async function getParent(): Promise<Parent | null> {
   if (!auth.user) return null;
   const { data } = await supabase
     .from("parents")
-    .select("id, name, call_name, phone, language, city, call_slot, call_time, medicines, watch_for, topics, first_call_at")
+    .select("id, name, call_name, phone, language, city, call_slot, call_time, medicines, watch_for, topics, first_call_at, paused, consent_status, recording_consent")
     .eq("user_id", auth.user.id)
     .order("created_at", { ascending: true })
     .limit(1)
