@@ -12,6 +12,8 @@ export const COMPANY = {
   // Where the enterprise is Udyam registered, for the footer line. The contact
   // address above is separate.
   registeredState: "Andhra Pradesh, India",
+  // The number Sona calls from, shown to the parent.
+  callerDisplay: "+91 80715 80790",
   themeColor: "#FFFDF9",
 };
 

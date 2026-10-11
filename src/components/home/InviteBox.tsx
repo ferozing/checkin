@@ -18,7 +18,7 @@ export function InviteBox() {
     if (!entered) return;
     start(async () => {
       if (await checkInviteCode(entered)) {
-        router.push(`/signup?code=${encodeURIComponent(entered)}`);
+        router.push(`/login?code=${encodeURIComponent(entered)}`);
       } else {
         setError(true);
       }

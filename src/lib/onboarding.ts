@@ -1,95 +1,134 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { TRIAL_DAYS } from "@/config";
 import { createClient } from "@/lib/supabase/server";
 
-/** Step 1: who the updates go to. */
-export async function saveProfile(formData: FormData) {
-  const name = String(formData.get("name") ?? "").trim();
-  const whatsapp = String(formData.get("whatsapp") ?? "").trim();
-  if (!name || !whatsapp) return;
+const str = (f: FormData, k: string) => String(f.get(k) ?? "").trim();
 
+async function me() {
   const supabase = await createClient();
-  const { data: auth } = await supabase.auth.getUser();
-  if (!auth.user) redirect("/signup");
+  const { data } = await supabase.auth.getUser();
+  if (!data.user) redirect("/login");
+  return { supabase, user: data.user };
+}
 
-  await supabase.from("profiles").upsert({ id: auth.user.id, name, whatsapp });
+/** The one parent this family is setting up. */
+async function myParent() {
+  const { supabase, user } = await me();
+  const { data } = await supabase
+    .from("parents")
+    .select("*")
+    .eq("user_id", user.id)
+    .order("created_at", { ascending: true })
+    .limit(1)
+    .maybeSingle();
+  return { supabase, user, parent: data };
+}
+
+/** Step 1: who the notes go to, and the invite code. */
+export async function saveProfile(formData: FormData) {
+  const name = str(formData, "name");
+  const whatsapp = str(formData, "whatsapp");
+  const code = str(formData, "code").toUpperCase();
+  if (!name || !whatsapp || !code) return;
+
+  const { supabase, user } = await me();
+
+  const { data: valid } = await supabase.rpc("invite_code_is_valid", { p_code: code });
+  if (valid !== true) redirect(`/onboarding/you?code=${encodeURIComponent(code)}&bad=1`);
+
+  await supabase.from("profiles").upsert({
+    id: user.id,
+    name,
+    whatsapp,
+    whatsapp_opt_in: formData.get("opt_in") === "on",
+  });
+  // Spend the code only once the profile is saved.
+  await supabase.rpc("redeem_invite_code", { p_code: code });
   redirect("/onboarding/parent");
 }
 
-/** Step 2: the parent Sona will call. */
+/** Step 2: who Sona calls. */
 export async function saveParent(formData: FormData) {
-  const get = (k: string) => String(formData.get(k) ?? "").trim();
-  const name = get("name");
-  const phone = get("phone");
+  const name = str(formData, "name");
+  const phone = str(formData, "phone");
   if (!name || !phone) return;
 
-  const supabase = await createClient();
-  const { data: auth } = await supabase.auth.getUser();
-  if (!auth.user) redirect("/signup");
-
-  const slot = get("call_slot") === "evening" ? "evening" : "morning";
+  const { supabase, user, parent } = await myParent();
   const row = {
-    user_id: auth.user.id,
+    user_id: user.id,
     name,
-    call_name: get("call_name") || name,
+    call_name: str(formData, "call_name") || name,
     phone,
-    language: get("language") || "Hindi",
-    call_slot: slot,
-    call_time: get("call_time") || (slot === "evening" ? "20:00" : "09:30"),
-    medicines: get("medicines") || null,
-    watch_for: get("watch_for") || null,
+    language: str(formData, "language") || "Telugu",
+    city: str(formData, "city") || null,
   };
 
-  // One parent per family for now, so keep updating the same row.
-  const { data: existing } = await supabase
-    .from("parents")
-    .select("id")
-    .eq("user_id", auth.user.id)
-    .order("created_at", { ascending: true })
-    .limit(1)
-    .maybeSingle();
+  if (parent) await supabase.from("parents").update(row).eq("id", parent.id);
+  else await supabase.from("parents").insert(row);
+  redirect("/onboarding/call");
+}
 
-  if (existing) {
-    await supabase.from("parents").update(row).eq("id", existing.id);
+/** Step 3: when to call, what to ask about. */
+export async function saveCall(formData: FormData) {
+  const { supabase, parent } = await myParent();
+  if (!parent) redirect("/onboarding/parent");
+
+  const slot = str(formData, "call_slot") === "evening" ? "evening" : "morning";
+  const medicines = formData
+    .getAll("medicine")
+    .map((m) => String(m).trim())
+    .filter(Boolean)
+    .map((line) => {
+      const [medName, ...rest] = line.split("|");
+      return { name: medName.trim(), when: rest.join("|").trim() };
+    });
+
+  await supabase
+    .from("parents")
+    .update({
+      call_slot: slot,
+      call_time: str(formData, "call_time") || (slot === "evening" ? "18:00" : "09:00"),
+      medicines,
+      watch_for: formData.getAll("watch_for").map(String),
+      topics: str(formData, "topics") || null,
+    })
+    .eq("id", parent.id);
+  redirect("/onboarding/tell");
+}
+
+/**
+ * Step 4: book the first call and start the trial. Consent stays `pending`:
+ * only the parent can give it, on the call itself.
+ */
+export async function finishOnboarding(formData: FormData) {
+  const { supabase, user, parent } = await myParent();
+  if (!parent) redirect("/onboarding/parent");
+
+  const when = str(formData, "first_call");
+  const at = new Date();
+  if (when === "today") {
+    at.setHours(at.getHours() + 1);
   } else {
-    await supabase.from("parents").insert(row);
+    const [h, m] = (parent.call_time ?? "09:00").split(":").map(Number);
+    at.setDate(at.getDate() + 1);
+    at.setHours(h, m, 0, 0);
   }
-  redirect("/onboarding/consent");
-}
 
-/** Step 3: the parent knows Sona is going to call. */
-export async function saveConsent() {
-  const supabase = await createClient();
-  const { data: auth } = await supabase.auth.getUser();
-  if (!auth.user) redirect("/signup");
+  await supabase.from("parents").update({ first_call_at: at.toISOString() }).eq("id", parent.id);
 
-  const { data: parent } = await supabase
-    .from("parents")
-    .select("id")
-    .eq("user_id", auth.user.id)
-    .order("created_at", { ascending: true })
-    .limit(1)
-    .maybeSingle();
+  const trialEnds = new Date();
+  trialEnds.setDate(trialEnds.getDate() + TRIAL_DAYS);
+  await supabase.from("subscriptions").upsert(
+    {
+      user_id: user.id,
+      parent_id: parent.id,
+      status: "trial",
+      trial_ends_at: trialEnds.toISOString(),
+    },
+    { onConflict: "parent_id" },
+  );
 
-  if (parent) {
-    await supabase.from("parents").update({ consent_at: new Date().toISOString() }).eq("id", parent.id);
-  }
-  redirect("/onboarding/updates");
-}
-
-/** Step 4: start the trial. */
-export async function startTrial(trialDays: number) {
-  const supabase = await createClient();
-  const { data: auth } = await supabase.auth.getUser();
-  if (!auth.user) redirect("/signup");
-
-  const ends = new Date();
-  ends.setDate(ends.getDate() + trialDays);
-  await supabase.from("subscriptions").upsert({
-    user_id: auth.user.id,
-    status: "trial",
-    trial_ends_at: ends.toISOString(),
-  });
-  redirect("/onboarding/updates?done=1");
+  redirect("/first");
 }

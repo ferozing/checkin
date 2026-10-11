@@ -9,14 +9,14 @@ export async function GET(request: NextRequest) {
   const next = searchParams.get("next") ?? "/onboarding/you";
 
   if (!isSupabaseConfigured || !code) {
-    return NextResponse.redirect(`${origin}/signup?error=auth`);
+    return NextResponse.redirect(`${origin}/login?error=auth`);
   }
 
   const supabase = await createClient();
   const { error } = await supabase.auth.exchangeCodeForSession(code);
   if (error) {
     console.error("auth callback failed", error.message);
-    return NextResponse.redirect(`${origin}/signup?error=auth`);
+    return NextResponse.redirect(`${origin}/login?error=auth`);
   }
   return NextResponse.redirect(`${origin}${next}`);
 }
